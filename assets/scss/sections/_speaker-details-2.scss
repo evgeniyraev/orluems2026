@@ -1,0 +1,387 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Speaker Details 2 Section
+--------------------------------------------------------------*/
+.speaker-details-2 {
+  .profile-card {
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--default-color), transparent 92%);
+    overflow: hidden;
+
+    .profile-header {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent-color), transparent 90%), var(--surface-color));
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+
+      .profile-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 1.5rem;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 4px solid var(--surface-color);
+          box-shadow: 0 6px 20px color-mix(in srgb, var(--default-color), transparent 85%);
+        }
+
+        .role-indicator {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          width: 36px;
+          height: 36px;
+          background: var(--accent-color);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 3px solid var(--surface-color);
+
+          i {
+            color: var(--contrast-color);
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--heading-color);
+      }
+
+      .role {
+        color: var(--accent-color);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .organization {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: color-mix(in srgb, var(--default-color), transparent 35%);
+        font-size: 0.95rem;
+
+        i {
+          color: var(--accent-color);
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 1.5rem 0;
+      border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+
+      .stat-box {
+        text-align: center;
+
+        .stat-value {
+          display: block;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: var(--heading-color);
+          line-height: 1;
+          margin-bottom: 0.5rem;
+        }
+
+        .stat-name {
+          font-size: 0.75rem;
+          color: color-mix(in srgb, var(--default-color), transparent 50%);
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-color);
+        color: var(--contrast-color);
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 16px color-mix(in srgb, var(--accent-color), transparent 60%);
+        }
+      }
+    }
+  }
+
+  .expertise-card {
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--default-color), transparent 92%);
+
+    h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      color: var(--heading-color);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+
+      .tag {
+        background: color-mix(in srgb, var(--accent-color), transparent 90%);
+        color: var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 24px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+      }
+    }
+  }
+
+  .featured-quote {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 2.5rem;
+    position: relative;
+
+    .quote-mark {
+      font-size: 3.5rem;
+      opacity: 0.2;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  .content-section {
+    margin-bottom: 2.5rem;
+
+    .section-title-bar {
+      background: var(--accent-color);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+
+      h3 {
+        font-size: 1.5rem;
+        color: var(--contrast-color);
+        margin: 0;
+      }
+    }
+
+    .section-body {
+      p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: color-mix(in srgb, var(--default-color), transparent 15%);
+      }
+    }
+  }
+
+  .session-card {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 94%);
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--default-color), transparent 88%);
+      transform: translateX(4px);
+    }
+
+    &.keynote-session {
+      border-left-color: var(--accent-color);
+    }
+
+    &.workshop-session {
+      border-left-color: #10b981;
+    }
+
+    &.panel-session {
+      border-left-color: #8b5cf6;
+    }
+
+    .session-header {
+      margin-bottom: 1.5rem;
+
+      .session-type-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+
+        &.keynote {
+          background: var(--accent-color);
+          color: var(--contrast-color);
+        }
+
+        &.workshop {
+          background: #10b981;
+          color: white;
+        }
+
+        &.panel {
+          background: #8b5cf6;
+          color: white;
+        }
+
+        i {
+          font-size: 0.9rem;
+        }
+      }
+
+      h4 {
+        font-size: 1.4rem;
+        color: var(--heading-color);
+        margin: 0;
+      }
+    }
+
+    .session-details {
+      margin-bottom: 1.25rem;
+
+      .detail-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+
+        @media (max-width: 576px) {
+          grid-template-columns: 1fr;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .detail-col {
+          display: flex;
+          align-items: center;
+          gap: 0.625rem;
+          color: color-mix(in srgb, var(--default-color), transparent 35%);
+          font-size: 0.95rem;
+
+          i {
+            color: var(--accent-color);
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .session-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+      margin: 0;
+    }
+  }
+
+  .action-section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 2px solid color-mix(in srgb, var(--default-color), transparent 92%);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &.primary-action {
+        background: var(--accent-color);
+        color: var(--contrast-color);
+
+        &:hover {
+          background: color-mix(in srgb, var(--accent-color), black 15%);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px color-mix(in srgb, var(--accent-color), transparent 60%);
+        }
+      }
+
+      &.secondary-action {
+        background: var(--surface-color);
+        color: var(--default-color);
+        border: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+
+        &:hover {
+          border-color: var(--default-color);
+          transform: translateY(-2px);
+        }
+      }
+
+      &.tertiary-action {
+        background: transparent;
+        color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+
+        &:hover {
+          background: var(--accent-color);
+          color: var(--contrast-color);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  --background-color: rgba(255, 255, 255, 0);
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 20px 0;
+  transition: all 0.5s;
+  z-index: 997;
+
+  .header-container {
+    background: var(--surface-color);
+    border-radius: 50px;
+    padding: 5px 25px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.10);
+  }
+
+  .logo {
+    line-height: 1;
+
+    img {
+      max-height: 36px;
+      margin-right: 8px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 0;
+      padding-left: 5px;
+      font-weight: 500;
+      color: var(--heading-color);
+    }
+  }
+
+  .header-social-links {
+    padding-right: 15px;
+
+    a {
+      color: color-mix(in srgb, var(--default-color), transparent 40%);
+      padding-left: 6px;
+      display: inline-block;
+      transition: 0.3s;
+      font-size: 16px;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+
+      i {
+        line-height: 0px;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    padding-top: 10px;
+
+    .header-container {
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 10px 5px 10px 15px;
+    }
+
+    .logo {
+      order: 1;
+    }
+
+    .header-social-links {
+      order: 2;
+    }
+
+    .navmenu {
+      order: 3;
+    }
+  }
+}
+
+/* Global Header on Scroll
+------------------------------*/
+.scrolled .header {
+  --background-color: rgba(34, 18, 2, 0.9);
+}

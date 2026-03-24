@@ -1,0 +1,95 @@
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  scroll-margin-top: 90px;
+  overflow: clip;
+}
+
+@media (max-width: 1199px) {
+
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+
+  h2 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 1px;
+      background: var(--accent-color);
+    }
+  }
+
+  p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: color-mix(in srgb, var(--default-color), transparent 25%);
+    max-width: 900px;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+}
+
+@import './sections/_hero.scss';
+@import './sections/_intro.scss';
+@import './sections/_featured-speakers.scss';
+@import './sections/_schedule.scss';
+@import './sections/_tickets-2.scss';
+@import './sections/_call-to-action.scss';
+@import './sections/_testimonials.scss';
+@import './sections/_gallery.scss';
+@import './sections/_about.scss';
+@import './sections/_speakers.scss';
+@import './sections/_speaker-details-2.scss';
+@import './sections/_schedule-2.scss';
+@import './sections/_tickets.scss';
+@import './sections/_buy-tickets.scss';
+@import './sections/_venue-2.scss';
+@import './sections/_sponsors.scss';
+@import './sections/_gallery-2.scss';
+@import './sections/_contact.scss';
+@import './sections/_terms-of-service.scss';
+@import './sections/_privacy.scss';
+@import './sections/_error-404.scss';
+@import './sections/_starter-section.scss';

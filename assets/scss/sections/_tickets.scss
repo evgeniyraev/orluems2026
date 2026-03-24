@@ -1,0 +1,210 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Tickets Section
+--------------------------------------------------------------*/
+.tickets {
+  padding: 80px 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 97%) 0%, var(--background-color) 100%);
+
+  .ticket-card {
+    background: var(--surface-color);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px color-mix(in srgb, var(--accent-color), transparent 85%);
+      border-color: var(--accent-color);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      padding: 8px 40px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transform: rotate(45deg);
+      z-index: 2;
+    }
+
+    .ticket-header {
+      padding: 30px 25px 25px;
+      text-align: center;
+      background: linear-gradient(145deg, var(--surface-color) 0%, color-mix(in srgb, var(--accent-color), transparent 97%) 100%);
+
+      .ticket-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 20%));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+
+        i {
+          font-size: 28px;
+          color: var(--contrast-color);
+        }
+      }
+
+      .ticket-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--heading-color);
+        margin-bottom: 15px;
+        font-family: var(--heading-font);
+      }
+
+      .price-section {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 5px;
+
+        .currency {
+          font-size: 24px;
+          font-weight: 600;
+          color: var(--accent-color);
+        }
+
+        .amount {
+          font-size: 42px;
+          font-weight: 800;
+          color: var(--accent-color);
+          font-family: var(--heading-font);
+          line-height: 1;
+        }
+      }
+
+      .ticket-subtitle {
+        font-size: 14px;
+        color: color-mix(in srgb, var(--default-color), transparent 40%);
+        margin: 0;
+        font-style: italic;
+      }
+    }
+
+    .ticket-body {
+      padding: 25px;
+
+      .benefits-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 25px 0;
+
+        li {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 95%);
+          font-size: 14px;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          i {
+            margin-right: 12px;
+            font-size: 16px;
+            width: 16px;
+            text-align: center;
+          }
+
+          i.bi-check2 {
+            color: #28a745;
+          }
+
+          i.bi-x {
+            color: color-mix(in srgb, var(--default-color), transparent 60%);
+          }
+        }
+      }
+
+      .ticket-btn {
+        display: block;
+        width: 100%;
+        background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 20%));
+        color: var(--contrast-color);
+        text-align: center;
+        padding: 14px 0;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        border: none;
+
+        &:hover {
+          background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 15%), var(--accent-color));
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px color-mix(in srgb, var(--accent-color), transparent 70%);
+        }
+      }
+    }
+
+    &.premium {
+      transform: scale(1.05);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color), transparent 90%);
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      .ticket-header {
+        background: linear-gradient(145deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 20%));
+
+        .ticket-title,
+        .ticket-subtitle {
+          color: var(--contrast-color);
+        }
+
+        .price-section {
+
+          .currency,
+          .amount {
+            color: var(--contrast-color);
+          }
+        }
+
+        .ticket-icon {
+          background: var(--contrast-color);
+
+          i {
+            color: var(--accent-color);
+          }
+        }
+      }
+
+      @media (max-width: 992px) {
+        transform: scale(1);
+
+        &:hover {
+          transform: translateY(-10px);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ticket-card {
+      margin-bottom: 20px;
+
+      &.premium {
+        transform: scale(1);
+      }
+    }
+  }
+}

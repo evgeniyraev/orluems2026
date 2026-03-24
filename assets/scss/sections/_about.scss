@@ -1,0 +1,396 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+.about {
+  .intro-banner {
+    background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), black 25%));
+    border-radius: 16px;
+    padding: 48px 40px;
+    margin-bottom: 56px;
+    text-align: center;
+
+    .banner-content {
+      max-width: 800px;
+      margin: 0 auto;
+
+      .badge-label {
+        display: inline-block;
+        background-color: color-mix(in srgb, var(--contrast-color), transparent 80%);
+        color: var(--contrast-color);
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+      }
+
+      h3 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: var(--contrast-color);
+        margin-bottom: 16px;
+      }
+
+      p {
+        color: color-mix(in srgb, var(--contrast-color), transparent 15%);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 32px;
+      }
+
+      .banner-stats {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        flex-wrap: wrap;
+
+        .single-stat {
+          text-align: center;
+
+          .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--contrast-color);
+            font-family: var(--heading-font);
+          }
+
+          .stat-label {
+            font-size: 0.9rem;
+            color: color-mix(in srgb, var(--contrast-color), transparent 25%);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+    }
+  }
+
+  .features-row {
+    margin-bottom: 64px;
+
+    .feature-block {
+      background-color: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 12px 40px color-mix(in srgb, var(--accent-color), transparent 85%);
+        transform: translateY(-8px);
+      }
+
+      &.featured {
+        background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+        border-color: color-mix(in srgb, var(--accent-color), transparent 70%);
+      }
+
+      .feature-icon {
+        width: 72px;
+        height: 72px;
+        background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+
+        i {
+          font-size: 1.75rem;
+          color: var(--accent-color);
+        }
+      }
+
+      h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: color-mix(in srgb, var(--default-color), transparent 30%);
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .audience-wrapper {
+    background-color: var(--surface-color);
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--default-color), transparent 92%);
+
+    .audience-intro {
+      padding-right: 24px;
+
+      h3 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      >p {
+        color: color-mix(in srgb, var(--default-color), transparent 25%);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+
+      blockquote {
+        background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+        border-left: 3px solid var(--accent-color);
+        padding: 20px 24px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 28px;
+
+        p {
+          font-style: italic;
+          font-size: 1rem;
+          margin-bottom: 8px;
+          color: var(--heading-color);
+        }
+
+        cite {
+          font-style: normal;
+          font-weight: 600;
+          color: var(--accent-color);
+          font-size: 0.875rem;
+        }
+      }
+
+      .action-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+
+        .primary-btn {
+          background-color: var(--accent-color);
+          color: var(--contrast-color);
+          padding: 14px 32px;
+          border-radius: 8px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: color-mix(in srgb, var(--accent-color), black 15%);
+            transform: translateY(-2px);
+          }
+        }
+
+        .text-link {
+          color: var(--accent-color);
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+
+          i {
+            transition: transform 0.3s ease;
+          }
+
+          &:hover {
+            color: color-mix(in srgb, var(--accent-color), black 15%);
+
+            i {
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+
+      .audience-card {
+        background-color: var(--background-color);
+        border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+        border-radius: 10px;
+        padding: 20px 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+          border-color: var(--accent-color);
+          background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
+
+          i {
+            color: var(--accent-color);
+            transform: scale(1.15);
+          }
+        }
+
+        i {
+          font-size: 1.5rem;
+          color: color-mix(in srgb, var(--default-color), transparent 40%);
+          margin-bottom: 12px;
+          display: block;
+          transition: all 0.3s ease;
+        }
+
+        h5 {
+          font-size: 0.95rem;
+          font-weight: 600;
+          margin-bottom: 4px;
+        }
+
+        p {
+          font-size: 0.8rem;
+          color: color-mix(in srgb, var(--default-color), transparent 45%);
+          margin: 0;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .audience-wrapper {
+      .audience-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .intro-banner {
+      padding: 40px 24px;
+
+      .banner-content {
+        h3 {
+          font-size: 1.875rem;
+        }
+
+        .banner-stats {
+          gap: 32px;
+
+          .single-stat .stat-number {
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+
+    .audience-wrapper {
+      padding: 32px 24px;
+
+      .audience-intro {
+        padding-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
+
+        .action-links {
+          justify-content: center;
+        }
+      }
+
+      .audience-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .intro-banner {
+      .banner-content {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+
+        .banner-stats {
+          gap: 24px;
+
+          .single-stat {
+            .stat-number {
+              font-size: 1.5rem;
+            }
+
+            .stat-label {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+
+    .features-row {
+      margin-bottom: 48px;
+    }
+
+    .audience-wrapper {
+      .audience-intro {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        .action-links {
+          flex-direction: column;
+          gap: 16px;
+
+          .primary-btn {
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+
+      .audience-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+
+        .audience-card {
+          padding: 16px 12px;
+
+          i {
+            font-size: 1.25rem;
+          }
+
+          h5 {
+            font-size: 0.875rem;
+          }
+
+          p {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .intro-banner {
+      .banner-content {
+        .banner-stats {
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+    }
+
+    .audience-wrapper {
+      padding: 24px 16px;
+
+      .audience-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
