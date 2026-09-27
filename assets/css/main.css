@@ -2636,6 +2636,28 @@ section,
   box-shadow: 0 5px 15px color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
+.tickets .ticket-card.ticket-closed {
+  opacity: 0.55;
+}
+
+.tickets .ticket-card.ticket-closed .price-section,
+.tickets .ticket-card.ticket-closed .ticket-subtitle {
+  text-decoration: line-through;
+}
+
+.tickets .ticket-card .closed-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #ff6b6b;
+  color: #fff;
+}
+
 .tickets-2 .ticket-card.premium {
   transform: scale(1.05);
   border-color: var(--accent-color);
