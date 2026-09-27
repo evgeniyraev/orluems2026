@@ -2248,6 +2248,173 @@ section,
   color: var(--contrast-color);
 }
 
+.schedule .schedule-content .session-timeline .session-block .session-card .add-to-calendar {
+  align-self: flex-start;
+}
+
+.schedule .add-to-calendar .dropdown-menu {
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.schedule .add-to-calendar .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--default-color);
+}
+
+.schedule .add-to-calendar .dropdown-item:hover,
+.schedule .add-to-calendar .dropdown-item:focus {
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+}
+
+/* Select mode (pick several sessions to add to the calendar) */
+.schedule .programme-select {
+  position: sticky;
+  z-index: 20;
+  max-width: 900px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.schedule .programme-select .select-tools {
+  display: none;
+  flex: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--background-color), transparent 30%);
+}
+
+.schedule .is-selecting .programme-select [data-select="start"] {
+  display: none;
+}
+
+.schedule .is-selecting .programme-select .select-tools {
+  display: flex;
+}
+
+.schedule .programme-select .select-count {
+  flex: 1;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  white-space: nowrap;
+}
+
+.schedule .programme-select .select-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  color: var(--accent-color);
+  border-radius: 12px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.schedule .programme-select .select-btn:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.schedule .programme-select .select-btn.primary {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--accent-color);
+}
+
+.schedule .programme-select .select-btn.primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.schedule .programme-select .select-btn.icon {
+  padding: 9px 12px;
+  background: transparent;
+  border-color: transparent;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.schedule .programme-select .select-btn.icon:hover {
+  color: var(--heading-color);
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.schedule .schedule-content .session-timeline .session-block .session-card {
+  position: relative;
+}
+
+.schedule .schedule-content .session-timeline .session-block .select-check {
+  display: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 55%);
+  background: transparent;
+  color: var(--contrast-color);
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.schedule .schedule-content .session-timeline .session-block .select-check i {
+  opacity: 0;
+}
+
+.schedule .is-selecting .session-timeline .session-block .add-to-calendar {
+  display: none;
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selectable .select-check {
+  display: inline-flex;
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selectable .session-card {
+  cursor: pointer;
+  user-select: none;
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selectable .session-meta {
+  padding-right: 40px;
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selected .session-card {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selected .select-check {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.schedule .is-selecting .session-timeline .session-block.is-selected .select-check i {
+  opacity: 1;
+}
+
 .schedule .schedule-content .session-timeline .session-block.keynote .session-time::after {
   background: #ff6b6b;
 }
@@ -2418,8 +2585,37 @@ section,
     font-size: 18px;
   }
 
+  .schedule .schedule-content .session-timeline .session-block .session-card .add-to-calendar {
+    align-self: stretch;
+  }
+
+  .schedule .schedule-content .session-timeline .session-block .select-check {
+    top: 16px;
+    right: 16px;
+  }
+
+  .schedule .programme-select .select-count {
+    order: 1;
+    flex-basis: calc(100% - 60px);
+  }
+
+  .schedule .programme-select [data-select="cancel"] {
+    order: 2;
+  }
+
+  .schedule .programme-select [data-select="all"] {
+    order: 3;
+    flex: 1;
+  }
+
+  .schedule .programme-select [data-select="add"] {
+    order: 4;
+    flex: 1;
+  }
+
   .schedule .schedule-content .session-timeline .session-block .session-card .add-to-schedule {
     align-self: stretch;
+    width: 100%;
     text-align: center;
   }
 }

@@ -15,9 +15,14 @@
   const DATA_URL = 'assets/data/programme.json';
   // Sessions without an end time (dinners) are considered live for this long.
   const OPEN_ENDED_MS = 3 * 60 * 60 * 1000;
+  // Calendar events get a reminder this many minutes before the start.
+  const REMINDER_MINUTES = 15;
+  const SITE_URL = 'https://orluems2026.com/programme.html';
 
   let programme = null;
   let nowOffset = 0;
+  // Sessions picked in select mode, keyed "day-session".
+  const selected = new Set();
 
   function now() {
     return new Date(Date.now() + nowOffset);
@@ -69,10 +74,24 @@
     return html;
   }
 
-  function renderSession(s, dayIndex, sessionIndex) {
+  function renderCalendarButton(dayIndex, sessionIndex) {
+    const ref = `data-day="${dayIndex}" data-session="${sessionIndex}"`;
+    return `
+          <div class="dropdown add-to-calendar">
+            <button type="button" class="add-to-schedule" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-calendar-plus"></i>Add to calendar
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button type="button" class="dropdown-item" data-calendar="ics" ${ref}><i class="bi bi-apple"></i> Apple / Outlook (.ics)</button></li>
+              <li><button type="button" class="dropdown-item" data-calendar="google" ${ref}><i class="bi bi-google"></i> Google Calendar</button></li>
+            </ul>
+          </div>`;
+  }
+
+  function renderSession(s, dayIndex, sessionIndex, withCalendar) {
     const isBreak = s.track === 'break';
     return `
-      <div class="session-block ${esc(s.track)}" data-day="${dayIndex}" data-session="${sessionIndex}">
+      <div class="session-block ${esc(s.track)}${withCalendar && !isBreak ? ' is-selectable' : ''}" data-day="${dayIndex}" data-session="${sessionIndex}">
         <div class="session-time">
           <span class="start">${esc(s.start)}</span>
           <span class="end">${s.end ? esc(s.end) : '&nbsp;'}</span>
@@ -87,6 +106,9 @@
             <h3 class="session-title">${esc(s.title)}</h3>
             ${renderBody(s)}
           </div>
+          ${withCalendar && !isBreak ? renderCalendarButton(dayIndex, sessionIndex) + `
+          <button type="button" class="select-check" role="checkbox" aria-checked="false"
+            aria-label="Select ${esc(s.title)}"><i class="bi bi-check-lg"></i></button>` : ''}
         </div>
       </div>`;
   }
@@ -108,16 +130,231 @@
         aria-labelledby="${prefix}-tab-${i}" tabindex="0">
         <div class="schedule-content">
           <div class="session-timeline">
-            ${(day[key] || []).map((s, j) => renderSession(s, i, j)).join('')}
+            ${(day[key] || []).map((s, j) => renderSession(s, i, j, key === 'sessions')).join('')}
           </div>
         </div>
       </div>`).join('');
 
     container.innerHTML = `
+      ${key === 'sessions' ? `
+      <div class="programme-select" data-select-bar>
+        <button type="button" class="select-btn" data-select="start">
+          <i class="bi bi-check2-square"></i> Select sessions
+        </button>
+        <div class="select-tools">
+          <button type="button" class="select-btn" data-select="all"></button>
+          <span class="select-count" aria-live="polite"></span>
+          <button type="button" class="select-btn primary" data-select="add">
+            <i class="bi bi-calendar-plus"></i> Add to calendar
+          </button>
+          <button type="button" class="select-btn icon" data-select="cancel" aria-label="Cancel selection">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>` : ''}
       <div class="schedule-header">
         <ul class="nav nav-tabs" role="tablist">${tabs}</ul>
       </div>
       <div class="tab-content">${panes}</div>`;
+  }
+
+  /**
+   * Select mode: pick several sessions and export them as one .ics.
+   */
+  function selectableKeys() {
+    return programme.days.flatMap((day, i) => day.sessions
+      .map((s, j) => (s.track === 'break' ? null : `${i}-${j}`))
+      .filter(Boolean));
+  }
+
+  function updateSelection(container) {
+    const total = selectableKeys().length;
+    container.querySelectorAll('.session-block.is-selectable').forEach((block) => {
+      const on = selected.has(`${block.dataset.day}-${block.dataset.session}`);
+      block.classList.toggle('is-selected', on);
+      block.querySelector('.select-check').setAttribute('aria-checked', on);
+    });
+    const bar = container.querySelector('[data-select-bar]');
+    if (!bar) return;
+    const allSelected = selected.size === total;
+    bar.querySelector('[data-select="all"]').innerHTML = allSelected
+      ? '<i class="bi bi-square"></i> Clear all'
+      : '<i class="bi bi-check-all"></i> Select all';
+    bar.querySelector('.select-count').textContent = `${selected.size} of ${total} selected`;
+    bar.querySelector('[data-select="add"]').disabled = !selected.size;
+  }
+
+  function setSelecting(container, on) {
+    selected.clear();
+    container.classList.toggle('is-selecting', on);
+    const header = document.querySelector('#header');
+    const bar = container.querySelector('[data-select-bar]');
+    if (bar) bar.style.top = `${(header ? header.offsetHeight : 0) + 12}px`;
+    updateSelection(container);
+  }
+
+  function addSelected(container) {
+    const events = selectableKeys()
+      .filter((k) => selected.has(k))
+      .map((k) => {
+        const [i, j] = k.split('-').map(Number);
+        return icsEvent(programme.days[i].sessions[j], i, j);
+      });
+    if (!events.length) return;
+    setSelecting(container, false);
+    downloadIcs(icsCalendar(events), 'uems-orl-sofia-2026.ics');
+  }
+
+  function onSelectClick(e) {
+    const container = e.currentTarget;
+    const action = e.target.closest('[data-select]');
+    if (action) {
+      const type = action.dataset.select;
+      if (type === 'start') setSelecting(container, true);
+      if (type === 'cancel') setSelecting(container, false);
+      if (type === 'add') addSelected(container);
+      if (type === 'all') {
+        const keys = selectableKeys();
+        if (selected.size === keys.length) selected.clear();
+        else keys.forEach((k) => selected.add(k));
+        updateSelection(container);
+      }
+      return;
+    }
+
+    if (!container.classList.contains('is-selecting')) return;
+    const block = e.target.closest('.session-block.is-selectable');
+    if (!block) return;
+    const k = `${block.dataset.day}-${block.dataset.session}`;
+    if (selected.has(k)) selected.delete(k);
+    else selected.add(k);
+    updateSelection(container);
+  }
+
+  /**
+   * Calendar export (.ics / Google Calendar)
+   */
+  function icsDate(date) {
+    return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  }
+
+  function icsText(value) {
+    return String(value).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  }
+
+  // RFC 5545: lines longer than 75 octets are folded with CRLF + space.
+  function icsFold(line) {
+    const out = [];
+    let current = '';
+    let bytes = 0;
+    for (const char of line) {
+      const size = new TextEncoder().encode(char).length;
+      if (bytes + size > 74) {
+        out.push(current);
+        current = ' ';
+        bytes = 1;
+      }
+      current += char;
+      bytes += size;
+    }
+    out.push(current);
+    return out.join('\r\n');
+  }
+
+  function sessionDetails(s) {
+    const lines = [];
+    if (s.description) lines.push(s.description);
+    (s.items || []).forEach((item) => lines.push(`• ${item.text}${item.speaker ? ` (${item.speaker})` : ''}`));
+    if (s.speaker) lines.push(`Speaker: ${s.speaker}`);
+    if (lines.length) lines.push('');
+    lines.push(`Programme: ${SITE_URL}`);
+    return lines.join('\n');
+  }
+
+  function sessionLocation(s) {
+    return [s.room, programme.event.venue].filter(Boolean).join(', ');
+  }
+
+  function icsEvent(s, dayIndex, sessionIndex) {
+    const day = programme.days[dayIndex];
+    return [
+      'BEGIN:VEVENT',
+      `UID:${day.date}-${dayIndex}-${sessionIndex}-${s.start.replace(':', '')}@orluems2026.com`,
+      `DTSTAMP:${icsDate(new Date())}`,
+      `DTSTART:${icsDate(s.startAt)}`,
+      `DTEND:${icsDate(s.endAt)}`,
+      `SUMMARY:${icsText(s.title)}`,
+      `DESCRIPTION:${icsText(sessionDetails(s))}`,
+      `LOCATION:${icsText(sessionLocation(s))}`,
+      `URL:${SITE_URL}`,
+      'BEGIN:VALARM',
+      'ACTION:DISPLAY',
+      `DESCRIPTION:${icsText(s.title)}`,
+      `TRIGGER:-PT${REMINDER_MINUTES}M`,
+      'END:VALARM',
+      'END:VEVENT'
+    ];
+  }
+
+  function icsCalendar(events) {
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//UEMS-ORL Sofia 2026//Programme//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      `X-WR-CALNAME:${icsText(programme.event.title)}`,
+      ...events.flat(),
+      'END:VCALENDAR'
+    ].map(icsFold).join('\r\n') + '\r\n';
+  }
+
+  function downloadIcs(content, filename) {
+    // iOS hands a text/calendar data URL straight to the Calendar "Add event"
+    // sheet; blob downloads there end up in Files instead.
+    const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(content);
+      return;
+    }
+    const url = URL.createObjectURL(new Blob([content], { type: 'text/calendar;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function googleCalendarUrl(s) {
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: s.title,
+      dates: `${icsDate(s.startAt)}/${icsDate(s.endAt)}`,
+      details: sessionDetails(s),
+      location: sessionLocation(s)
+    });
+    return `https://calendar.google.com/calendar/render?${params}`;
+  }
+
+  function slug(value) {
+    return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  }
+
+  function onCalendarClick(e) {
+    const btn = e.target.closest('[data-calendar]');
+    if (!btn) return;
+    const type = btn.dataset.calendar;
+    const dayIndex = Number(btn.dataset.day);
+    const sessionIndex = Number(btn.dataset.session);
+    const s = programme.days[dayIndex].sessions[sessionIndex];
+    if (type === 'google') {
+      window.open(googleCalendarUrl(s), '_blank', 'noopener');
+    } else {
+      downloadIcs(icsCalendar([icsEvent(s, dayIndex, sessionIndex)]), `${slug(s.title)}.ics`);
+    }
   }
 
   /**
@@ -321,6 +558,8 @@
 
         containers.forEach((c) => {
           renderProgramme(c);
+          c.addEventListener('click', onCalendarClick);
+          c.addEventListener('click', onSelectClick);
           updateLiveState(c, true);
         });
         cards.forEach(updateCountdown);
