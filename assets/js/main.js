@@ -114,7 +114,7 @@
 
   }
 
-  document.querySelectorAll('.countdown').forEach(function(countDownItem) {
+  document.querySelectorAll('.countdown[data-count]').forEach(function(countDownItem) {
     updateCountDown(countDownItem);
     setInterval(function() {
       updateCountDown(countDownItem);

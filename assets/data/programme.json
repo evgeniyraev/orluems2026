@@ -1,0 +1,80 @@
+{
+  "event": {
+    "title": "UEMS-ORL Section Meeting Sofia 2026",
+    "timezone": "+03:00",
+    "venue": "Grand Hotel Sofia"
+  },
+  "nextEvent": {
+    "title": "UEMS-ORL Section Meeting 2027",
+    "location": "Hamburg",
+    "year": 2027,
+    "start": null
+  },
+  "days": [
+    {
+      "date": "2026-10-02",
+      "label": "Oct 2",
+      "weekday": "Friday",
+      "sessions": [
+        { "start": "12:30", "end": "13:30", "track": "break", "label": "Break", "room": "Triaditsa Hall", "title": "Lunch" },
+        { "start": "13:45", "end": "14:20", "track": "keynote", "label": "Opening", "room": "Sofia Hall", "title": "Welcome & Opening", "items": [
+          { "text": "Welcome and introduction of all delegates", "speaker": "H. Irjala" },
+          { "text": "Approval of agenda Sofia 2026", "speaker": "K. Werther" },
+          { "text": "Approval of minutes from Bratislava 2025", "speaker": "K. Werther" }
+        ] },
+        { "start": "14:20", "end": "15:20", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "Board & Council Reports", "items": [
+          { "text": "Report from the UEMS-ORL Board", "speaker": "H. Irjala" },
+          { "text": "UEMS Council meetings: Brussels Autumn Meeting 2025 and Brussels Spring Meeting 2026", "speaker": "K. Werther" },
+          { "text": "UEMS-ORL treasurer report", "speaker": "J. Boucek" }
+        ] },
+        { "start": "15:20", "end": "15:50", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "15:50", "end": "16:30", "track": "keynote", "label": "Elections", "room": "Sofia Hall", "title": "Elections of the President and Secretary General of the UEMS-ORL Board", "speaker": "H. Irjala" },
+        { "start": "16:30", "end": "18:00", "track": "design", "label": "Training", "room": "Sofia Hall", "title": "Creation of ORL-HNS ETR", "speaker": "K. Sandtröm" },
+        { "start": "19:00", "track": "business", "label": "Social", "title": "Welcome Reception & Dinner", "description": "Welcome reception and dinner for all delegates." }
+      ],
+      "overview": [
+        { "start": "12:30", "end": "13:30", "track": "break", "label": "Break", "room": "Triaditsa Hall", "title": "Lunch", "description": "Lunch for all delegates." },
+        { "start": "13:45", "end": "15:20", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "Opening & Board Reports", "description": "Welcome, approval of agenda and minutes, Board, UEMS Council and treasurer reports." },
+        { "start": "15:20", "end": "15:50", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "15:50", "end": "18:00", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "Elections & ORL-HNS ETR", "description": "Elections of the President and Secretary General, followed by the creation of the ORL-HNS ETR." },
+        { "start": "19:00", "track": "business", "label": "Social", "title": "Welcome Reception & Dinner" }
+      ]
+    },
+    {
+      "date": "2026-10-03",
+      "label": "Oct 3",
+      "weekday": "Saturday",
+      "sessions": [
+        { "start": "9:00", "end": "10:00", "track": "design", "label": "Training", "room": "Sofia Hall", "title": "Creation of ORL-HNS ETR – continuation", "speaker": "K. Sandtröm" },
+        { "start": "10:00", "end": "10:20", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "EACCME Report", "speaker": "S. Steinsvåg" },
+        { "start": "10:20", "end": "10:50", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "10:50", "end": "11:10", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "Report from the EBEORL Examination Board", "speaker": "C. Meco" },
+        { "start": "11:10", "end": "11:30", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "Report from Board Examination – Facial Plastics" },
+        { "start": "11:30", "end": "11:50", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "Report from Board Examination – Phoniatrics", "speaker": "P. Caffier" },
+        { "start": "11:50", "end": "12:10", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "Report from Board Examination – Laryngology", "speaker": "E. Sjögren" },
+        { "start": "12:10", "end": "12:30", "track": "design", "label": "Training", "room": "Sofia Hall", "title": "The International Sialendoscopy Curriculum and Diploma", "speaker": "F. Marchal" },
+        { "start": "12:30", "end": "13:30", "track": "break", "label": "Break", "room": "Triaditsa Hall", "title": "Lunch" },
+        { "start": "13:30", "end": "14:00", "track": "design", "label": "Training", "room": "Sofia Hall", "title": "Education in Europe", "speaker": "E. Sjögren" },
+        { "start": "14:00", "end": "14:30", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "News from CEORL-HNS", "speaker": "T. Baudoin" },
+        { "start": "14:30", "end": "14:50", "track": "development", "label": "Reports", "room": "Sofia Hall", "title": "CEORL-HNS Meeting in Berlin 2028", "speaker": "T. Baudoin, K. Werther" },
+        { "start": "14:50", "end": "15:00", "track": "keynote", "label": "Ceremony", "room": "Sofia Hall", "title": "Awards and Diplomas", "speaker": "President" },
+        { "start": "15:00", "end": "15:30", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "15:30", "end": "15:50", "track": "keynote", "label": "Section", "room": "Sofia Hall", "title": "Confirmation of Next Meetings", "description": "2027 Hamburg · 2028 Uppsala" },
+        { "start": "15:50", "end": "16:10", "track": "keynote", "label": "Section", "room": "Sofia Hall", "title": "Any Other Business" },
+        { "start": "16:10", "end": "16:50", "track": "keynote", "label": "Section", "room": "Sofia Hall", "title": "How the ORL Section Became Likable Again? C+C", "speaker": "K. Werther" },
+        { "start": "16:50", "end": "17:00", "track": "keynote", "label": "Closing", "room": "Sofia Hall", "title": "Closure of the Meeting" },
+        { "start": "19:00", "track": "business", "label": "Social", "title": "Dinner at a Traditional Bulgarian Restaurant", "description": "Meeting at the hotel reception for a group transfer to a traditional Bulgarian restaurant." }
+      ],
+      "overview": [
+        { "start": "9:00", "end": "10:20", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "ORL-HNS ETR & EACCME Report", "description": "Continuation of the ORL-HNS ETR, followed by the EACCME report." },
+        { "start": "10:20", "end": "10:50", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "10:50", "end": "12:30", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "Examination Board Reports", "description": "EBEORL, Facial Plastics, Phoniatrics and Laryngology examinations; sialendoscopy curriculum." },
+        { "start": "12:30", "end": "13:30", "track": "break", "label": "Break", "room": "Triaditsa Hall", "title": "Lunch" },
+        { "start": "13:30", "end": "15:00", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "Education & CEORL-HNS", "description": "Education in Europe, news from CEORL-HNS, Berlin 2028, awards and diplomas." },
+        { "start": "15:00", "end": "15:30", "track": "break", "label": "Break", "title": "Coffee Break" },
+        { "start": "15:30", "end": "17:00", "track": "keynote", "label": "Session", "room": "Sofia Hall", "title": "Next Meetings, AOB & Closure", "description": "Confirmation of next meetings, any other business and closure of the meeting." },
+        { "start": "19:00", "track": "business", "label": "Social", "title": "Dinner at a Traditional Bulgarian Restaurant" }
+      ]
+    }
+  ]
+}

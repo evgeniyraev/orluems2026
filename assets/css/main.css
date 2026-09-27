@@ -1240,6 +1240,34 @@ section,
   font-weight: 500;
 }
 
+.hero .countdown-note,
+.hero .countdown-message {
+  text-align: center;
+  margin: -16px 0 24px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.hero .countdown-message {
+  margin: 0 0 32px;
+  padding: 24px 16px;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+}
+
+.hero .countdown-message i {
+  display: block;
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.hero .countdown[hidden],
+.hero .countdown-note[hidden],
+.hero .countdown-message[hidden] {
+  display: none;
+}
+
 .hero .ticket-info {
   background: color-mix(in srgb, var(--default-color), transparent 95%);
   border-radius: 12px;
@@ -2238,6 +2266,126 @@ section,
 
 .schedule .schedule-content .session-timeline .session-block.break .session-time::after {
   background: var(--accent-color);
+}
+
+/* Live / past sessions (set by assets/js/programme.js) */
+.schedule .schedule-content .session-timeline .session-block .live-badge {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.schedule .schedule-content .session-timeline .session-block.is-live .live-badge {
+  display: inline-flex;
+}
+
+.schedule .schedule-content .session-timeline .session-block.is-live .session-card {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color), 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 75%);
+}
+
+.schedule .schedule-content .session-timeline .session-block.is-live .session-time::after {
+  background: var(--accent-color);
+  animation: session-pulse 1.6s ease-out infinite;
+}
+
+.schedule .schedule-content .session-timeline .session-block.is-past {
+  opacity: 0.5;
+}
+
+/* "Now" bar above the programme tabs */
+.schedule .programme-now {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 88%);
+}
+
+.schedule .programme-now[hidden] {
+  display: none;
+}
+
+.schedule .programme-now .now-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 6px 0;
+}
+
+.schedule .programme-now .now-row + .now-row {
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  margin-top: 6px;
+  padding-top: 12px;
+}
+
+.schedule .programme-now .now-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+  white-space: nowrap;
+}
+
+.schedule .programme-now .now-label .now-time {
+  text-transform: none;
+}
+
+.schedule .programme-now .now-label.live {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.schedule .programme-now .now-title {
+  flex: 1;
+  min-width: 200px;
+  font-family: var(--heading-font);
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.schedule .programme-now .now-title small {
+  font-family: var(--default-font);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.schedule .programme-now .now-jump {
+  border: 1px solid var(--accent-color);
+  background: transparent;
+  color: var(--accent-color);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.schedule .programme-now .now-jump:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+@keyframes session-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-color), transparent 40%); }
+  100% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--accent-color), transparent 100%); }
 }
 
 @media (max-width: 768px) {
